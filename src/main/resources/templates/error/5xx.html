@@ -1,0 +1,14 @@
+<html>
+
+<head>
+  <link th:href="@{/style/login.css}" rel="stylesheet" />
+  <title>ERROR 404</title>
+</head>
+
+<body>
+  <h1> 505 Glitch in the matrix</h1>
+
+  <span th:if="${errorMessage}" th:text="${errorMessage}">Error</span>
+</body>
+
+</html>

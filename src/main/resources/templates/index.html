@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share Your PDF</title>
+
+  <link th:href="@{/style/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <h1>Share Your Knowledge</h1>
+    <p>Explore and share PDFs on a variety of topics.</p>
+  </header>
+  <main>
+
+    <div class="information">
+      <p th:text="|Hello, ${name}!|" style="display:inline-block" />
+      <form th:action="@{/logout}" method="post" style="display: inline-block;">
+        <input type="submit" value="Sign Out" />
+      </form>
+    </div>
+
+    <section class="upload-area">
+      <h2>Upload your PDF:</h2>
+      <form method="POST" enctype="multipart/form-data" action="/">
+        <label for="file">Select file:</label>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <input type="file" name="file" />
+        <input type="submit" value="upload" />
+      </form>
+    </section>
+    <section class="browse-pdfs">
+      <h2>Browse recent PDFs:</h2>
+      <ul th:each="pdf: ${list_of_pdf}">
+        <a href th:href="@{'/uploads/'+${user}+'/'+${pdf}}"> <span th:text="${pdf}"></span> </a>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Share Your Knowledge</p>
+  </footer>
+</body>
+
+</html>
